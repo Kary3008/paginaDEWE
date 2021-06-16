@@ -57,3 +57,11 @@ body{
   font-size: 1em;
   text-align: left;
 }
+.social{
+  width: 25px;
+  height: 25px;
+}
+
+.text1{
+  color: #f9c70a;
+}
