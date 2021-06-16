@@ -1,3 +1,45 @@
+<?php
+  error_reporting(0);
+  include 'main/conecta.php';
+  include 'main/config.php';
+  // Inicia proceso de registro
+  // validamos que se presione al boton registro
+  if (isset($_POST['submit'])) {
+    // recuperamos los valores que nos da el usuario
+    $nombre = $conecta->real_escape_string($_POST['nombre']);
+    $email = $conecta->real_escape_string($_POST['email']);
+    $tel = $conecta->real_escape_string($_POST['tel']);
+  // consulta para verificar si exite un email igual dentro de la base de datos
+    $nuevo = "SELECT * FROM alumnos WHERE Email = '$email' or Telefono = '$tel'";
+    $new = $conecta->query($nuevo);
+  // validacion de el criterio de aceptacion
+  if($new->num_rows > 0){
+    $mensaje.="<div class='alert alert-danger alert-dismissible fade show shadow-lg p-3 mb-5 bg-white rounded' role='alert'>
+            <strong>El usuario y/o Email ya existe</strong> El registro ya existe en la base de datos por favor <a href='main.php'>Click para iniciar sesion</a> .
+            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+               <span aria-hidden='true'>&times;</span>
+            </button>
+          </div>";
+    }
+    else {
+      $reg = "INSERT INTO alumnos(NombreA, ApellidoP, ApellidoM, Email, Tel)
+      VALUES('$nombre','$apellidop','$apellidom','$f_nac', '$email', '$usern', '$passw','$gen', '$niv','$mat','$estado', 'NULL', '$tipo_u')";
+      $registro = $conecta->query($reg);
+
+      // verificamos que el registro sea valido para mandar una alerta
+      if ($registro > 0) {
+          $mensaje.="<div class='alert alert-success alert-dismissible fade show shadow-lg p-3 mb-5 bg-white rounded' role='alert'>
+             <strong>Registro Exitoso</strong> Ya puedes iniciar sesión <a href='principal.php' class='text-muted text-decoration-none'>Click para iniciar sesion</a> .
+             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                <span aria-hidden='true'>&times;</span>
+             </button>
+           </div>";
+        }
+    }
+
+}
+  $conecta->close();
+?>
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
   <head>
