@@ -1,4 +1,7 @@
 <?php
+// consulta para extraer los datos de la tabla contacto
+$cont = "SELECT * FROM contacto ORDER BY Id_Contacto";
+$resultado6 = $conecta->query($cont);
 // consulta para extraer los datos de la tabla alumnos
 $usuario1 = "SELECT * FROM alumnos ORDER BY Id_Alumno";
 $resultado1 = $conecta->query($usuario1);

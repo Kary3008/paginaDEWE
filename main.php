@@ -10,20 +10,19 @@
     $email = $conecta->real_escape_string($_POST['email']);
     $tel = $conecta->real_escape_string($_POST['tel']);
   // consulta para verificar si exite un email igual dentro de la base de datos
-    $nuevo = "SELECT * FROM alumnos WHERE Email = '$email' or Telefono = '$tel'";
+    $nuevo = "SELECT * FROM contacto WHERE Email = '$email' or Tel = '$tel'";
     $new = $conecta->query($nuevo);
   // validacion de el criterio de aceptacion
   if($new->num_rows > 0){
     $mensaje.="<div class='alert alert-danger alert-dismissible fade show shadow-lg p-3 mb-5 bg-white rounded' role='alert'>
-            <strong>El usuario y/o Email ya existe</strong> El registro ya existe en la base de datos por favor <a href='main.php'>Click para iniciar sesion</a> .
+            <strong>El Telefono y/o Email que ingresaste ya existen</strong> El registro ya existe en la base de datos por favor <a href='main.php'>Click para iniciar sesion</a> .
             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                <span aria-hidden='true'>&times;</span>
             </button>
           </div>";
     }
     else {
-      $reg = "INSERT INTO alumnos(NombreA, ApellidoP, ApellidoM, Email, Tel)
-      VALUES('$nombre','$apellidop','$apellidom','$f_nac', '$email', '$usern', '$passw','$gen', '$niv','$mat','$estado', 'NULL', '$tipo_u')";
+      $reg = "INSERT INTO alumnos(Nombre, Email, Tel) VALUES('$nombre','$email','$tel')";
       $registro = $conecta->query($reg);
 
       // verificamos que el registro sea valido para mandar una alerta
@@ -36,7 +35,6 @@
            </div>";
         }
     }
-
 }
   $conecta->close();
 ?>
@@ -294,16 +292,16 @@
               <div class="card-body text-dark">
                 <!---Empieza formulario-->
                 <div class="container">
-                  <form id="form-Order" class="container form">
+                  <form id="form-Order" class="container form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" id="registro" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-10">
                           <p>
                             <label for="name">Nombre*</label>
-                            <input type="text" name="name" id="name" placeholder="Kary" autofocus autocomplete required class="cajas">
+                            <input type="text" name="nombre" id="name" placeholder="Kary" autofocus autocomplete required class="cajas">
                           </p>
                           <p>
                             <label for="phone">Teléfono*</label>
-                            <input type="text" name="phone" placeholder="+5525670789" required class="cajas">
+                            <input type="text" name="tel" placeholder="+5525670789" required class="cajas">
                           </p>
                           <p>
                             <label for="email">Email*</label>
@@ -311,10 +309,11 @@
                           </p>
                         </div>
                         <div class="col"> <br><br><br><br><br><br><br>
-                          <input type="submit" value="Enviar" id="btn" class="btn btn-warning btn-lg text">
+                          <input type="submit" name="submit" value="Enviar" id="btn" class="btn btn-warning btn-lg text">
                         </div>
                       </div>
                 </div>
+                <?php echo $mensaje; ?>
                 <!--Termina formulario-->
               </div>
             </div>
