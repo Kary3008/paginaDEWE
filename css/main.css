@@ -1,0 +1,59 @@
+body{
+  background: #000;
+  color: white;
+}
+.img{
+  width: auto;
+  height: 500px;
+}
+.imagen{
+  width: 250px;
+  height: 350px;
+  float: none;
+}
+.imagen1{
+  width: 350px;
+  height: 350px;
+  float: none;
+}
+.card1{
+  background-color: #ffbd59;
+}
+.parte1{
+  color: #ffbd59;
+  font-size: 15px;
+}
+.logo{
+  width: 150px;
+  height: 50px;
+  padding: 2px, 2px, 2px, 2px;
+}
+.icono{
+  width: 100px;
+  height: 100px;
+  float: none;
+}
+.linea{
+  background-color: #ffbd59;
+}
+.cajas{
+  width: 100%;
+  background: transparent;
+  border-right: 0px;
+  border-left: 0px;
+  border-top: 0px;
+  border-bottom: 2px solid #ffcc00;
+}
+.cajas focus{
+  border-bottom: 5px solid white;
+}
+.contacto{
+  background-color: #9933ff;
+  border: none;
+}
+.form{
+  background: #000;
+  color: #fff;
+  font-size: 1em;
+  text-align: left;
+}
