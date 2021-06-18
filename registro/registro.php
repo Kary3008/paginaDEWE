@@ -38,21 +38,21 @@
     // validacion de el criterio de aceptacion
     if($new->num_rows > 0){
       $mensaje.="<div class='alert alert-danger alert-dismissible fade show shadow-lg p-3 mb-5 bg-white rounded' role='alert'>
-              <strong>El usuario y/o Email ya existe</strong> El registro ya existe en la base de datos por favor <a href='principal.php'>Click para iniciar sesion</a> .
+              <strong>El usuario y/o Email ya existe</strong> El registro ya existe en la base de datos por favor <a href='../main.html'>Click para iniciar sesion</a> .
               <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                  <span aria-hidden='true'>&times;</span>
               </button>
             </div>";
       }
       else {
-        $reg = "INSERT INTO usuario(Nombre, Apellido_P, Apellido_M, Fech_Nac, E_mail, Usuario, Password, Id_Genero, Id_Nivel, Id_Materia, Id_Estado, Online, Id_Tusuario)
-        VALUES('$nombre','$apellidop','$apellidom','$f_nac', '$email', '$usern', '$passw','$gen', '$niv','$mat','$estado', 'NULL', '$tipo_u')";
+        $reg = "INSERT INTO usuario(Nombre, Apellido_P, Apellido_M, Fech_Nac, E_mail, Usuario, Password, Id_Genero, Id_Nivel, Id_Materia, Id_Estado, Id_Tusuario)
+        VALUES('$nombre','$apellidop','$apellidom','$f_nac', '$email', '$usern', '$passw','$gen', '$niv','$mat','$estado', '$tipo_u')";
         $registro = $conecta->query($reg);
 
         // verificamos que el registro sea valido para mandar una alerta
         if ($registro > 0) {
             $mensaje.="<div class='alert alert-success alert-dismissible fade show shadow-lg p-3 mb-5 bg-white rounded' role='alert'>
-               <strong>Registro Exitoso</strong> Ya puedes iniciar sesión <a href='principal.php' class='text-muted text-decoration-none'>Click para iniciar sesion</a> .
+               <strong>Registro Exitoso</strong> Visita nuestra página principal. <a href='../main.html' class='text-muted text-decoration-none'>Click para iniciar sesion</a> .
                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                   <span aria-hidden='true'>&times;</span>
                </button>
@@ -70,29 +70,28 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <script src="js/jquery-3.5.1.min.js"></script>
-    <title>Registro | Mexiware</title>
+    <title>Registro | KSPORTS</title>
   </head>
-  <body>
+  <body style="background: #000; color: white;">
     <div class="container">
       <div class="container py-2">
         <!--Inicia apartado-->
-        <h2 class="text-center py-3 style-text">Registro de usuario</h2>
+        <h2 class="text-center py-3 style-text text-white">Registro de usuario</h2>
         <div class="container">
-            <div class="card text-white">
-                <img src="img/mexiware.png" class="card-img  img-slide" alt="img contacto">
+            <div class="card text-white" style="width:100%; height:550px;">
+                <img src="../img/logo3.png" class="img" alt="img contacto">
                 <div class="card-img-overlay">
                    <div class="container">
                       <div class="row">
-                        <div class="col text-center">
-                            <p class="py-2">R</p>
+                        <div class="col col-md-4"><!--columna vacía-->
                         </div>
                         <div class="col">
-                          <p class="text-dark text-center">Ingresa los Datos que se te solicitan</p>
+                          <h4 class="text-white text-center">Ingresa los Datos que se te solicitan</h4>
                           <!--Inicia formulario-->
                             <form name="Fregistro" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" id="registro" enctype="multipart/form-data">
                                 <div class="form-row">
                                   <div class="col-md-12">
-                                    <input type="text" name="nombre" class="form-control" placeholder="Nombre" style="border-top: 0px;
+                                    <input type="text" name="nombre" class="form-control caja" placeholder="Nombre" style="border-top: 0px;
                                     border-left: 0px;border-right: 0px;border-bottom: 2px solid  #ff9966;" required>
                                   </div>
                                 </div>
@@ -132,7 +131,7 @@
                                     border-left: 0px;border-right: 0px;border-bottom: 2px solid  #ff9966;" required>
                                   </div>
                                   <div class="form-group col-md-6">
-                                      <select class="form-control" name="gen" style="border-top: 0px;
+                                      <select class="form-control caja" name="gen" style="border-top: 0px;
                                       border-left: 0px;border-right: 0px;border-bottom: 2px solid  #ff9966;" required>
                                       <option selected>Selecciona el género</option>
                                       <?php while($row1 = $resultado2->fetch_assoc()) {  ?>
@@ -143,7 +142,7 @@
                                 </div>
                                 <div class="form-row">
                                   <div class="form-group col-md-6">
-                                    <select class="form-control" name="niv" style="border-top: 0px;
+                                    <select class="form-control caja" name="niv" style="border-top: 0px;
                                     border-left: 0px;border-right: 0px;border-bottom: 2px solid  #ff9966;" required>
                                     <option selected>Selecciona el nivel escolar</option>
                                     <?php while($row2 = $resultado3->fetch_assoc()) {  ?>
@@ -152,7 +151,7 @@
                                   </select>
                                   </div>
                                   <div class="form-group col-md-6">
-                                    <select class="form-control" name="tipo_u" style="border-top: 0px;
+                                    <select class="form-control caja" name="tipo_u" style="border-top: 0px;
                                     border-left: 0px;border-right: 0px;border-bottom: 2px solid  #ff9966;" required>
                                     <option selected>Selecciona el tipo de usuario</option>
                                     <?php while($row3 = $resultado6->fetch_assoc()) {  ?>
@@ -163,7 +162,7 @@
                                 </div>
                                 <div class="form-row">
                                   <div class="col-md-12">
-                                    <select class="form-control" name="mat" style="border-top: 0px;
+                                    <select class="form-control caja" name="mat" style="border-top: 0px;
                                     border-left: 0px;border-right: 0px;border-bottom: 2px solid  #ff9966;" required>
                                     <option selected>Selecciona la materia</option>
                                     <?php while($row4 = $resultado4->fetch_assoc()) {  ?>
