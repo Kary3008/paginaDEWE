@@ -1,6 +1,12 @@
-body{
+* {
+  font-family: "Cinzel";
+  box-sizing: border-box;
+}
+html, body{
   background: #000;
   color: white;
+  margin: 0;
+  height: 100%;
 }
 .img{
   width: auto;
